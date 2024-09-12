@@ -14,21 +14,9 @@
             <params/>
             <throws/>
             <body>
-                <call expression="moveAround()" expression-java="moveAround()" enable="true"/>
                 <call expression="startingDirection()" expression-java="startingDirection()" enable="true"/>
+                <call expression="moveAround()" expression-java="moveAround()" enable="true"/>
                 <call expression="removeWormAddLobster()" expression-java="removeWormAddLobster()" enable="true"/>
-            </body>
-        </method>
-        <method access="public" type="void" type-java="void" name="addObject" enable="true">
-            <javadoc xml:space="preserve"/>
-            <params>
-                <params type="Actor" type-java="Actor" name="Lobster"/>
-                <params type="int" type-java="int" name="x"/>
-                <params type="int" type-java="int" name="y"/>
-            </params>
-            <throws/>
-            <body>
-                <call expression="addObject(Lobster,locationX,locationY)" expression-java="addObject(Lobster, locationX, locationY)" enable="true"/>
             </body>
         </method>
         <method access="public" type="void" type-java="void" name="moveAround" enable="true">
@@ -72,15 +60,15 @@
             <params/>
             <throws/>
             <body>
-                <variable type="Actor" type-java="Actor" name="worm2" value="getOneIntersectingObject(Worm.class)" value-java="getOneIntersectingObject(Worm.class)" enable="true"/>
-                <if condition="worm2!=null" condition-java="worm2 != null" enable="true">
+                <variable type="Actor" type-java="Actor" name="worm" value="getOneIntersectingObject(Worm.class)" value-java="getOneIntersectingObject(Worm.class)" enable="true"/>
+                <if condition="worm!=null" condition-java="worm != null" enable="true">
                     <ifStatements>
-                        <call expression="getX()" expression-java="getX()" enable="true"/>
-                        <call expression="getY()" expression-java="getY()" enable="true"/>
-                        <variable type="World" type-java="World" name="world2" value="getWorld()" value-java="getWorld()" enable="true"/>
-                        <call expression="world2.removeObject(worm2)" expression-java="world2.removeObject(worm2)" enable="true"/>
-                        <variable type="int" type-java="int" name="locationX" value="getX" value-java="getX" enable="true"/>
-                        <variable type="int" type-java="int" name="locationY" value="getY" value-java="getY" enable="true"/>
+                        <variable type="World" type-java="World" name="world" value="getWorld()" value-java="getWorld()" enable="true"/>
+                        <variable type="int" type-java="int" name="locationX" value="worm.getX()" value-java="worm.getX()" enable="true"/>
+                        <variable type="int" type-java="int" name="locationY" value="worm.getY()" value-java="worm.getY()" enable="true"/>
+                        <variable type="Actor" type-java="Actor" name="lobster" value="new Lobster()" value-java=" new Lobster()" enable="true"/>
+                        <call expression="world.removeObject(worm)" expression-java="world.removeObject(worm)" enable="true"/>
+                        <call expression="world.addObject(lobster,locationX,locationY)" expression-java="world.addObject(lobster, locationX, locationY)" enable="true"/>
                     </ifStatements>
                 </if>
             </body>

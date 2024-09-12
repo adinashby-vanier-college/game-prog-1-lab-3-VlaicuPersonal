@@ -14,17 +14,9 @@ public class Lobster extends Actor
      */
     public void act()
     {
-        moveAround();
         startingDirection();
+        moveAround();
         removeWormAddLobster();
-    }
-
-    /**
-     * 
-     */
-    public void addObject(Actor Lobster, int x, int y)
-    {
-        addObject(Lobster, locationX, locationY);
     }
 
     /**
@@ -60,14 +52,14 @@ public class Lobster extends Actor
      */
     public void removeWormAddLobster()
     {
-        Actor worm2 = getOneIntersectingObject(Worm.class);
-        if (worm2 != null) {
-            getX();
-            getY();
-            World world2 = getWorld();
-            world2.removeObject(worm2);
-            int locationX = getX;
-            int locationY = getY;
+        Actor worm = getOneIntersectingObject(Worm.class);
+        if (worm != null) {
+            World world = getWorld();
+            int locationX = worm.getX();
+            int locationY = worm.getY();
+            Actor lobster =  new  Lobster();
+            world.removeObject(worm);
+            world.addObject(lobster, locationX, locationY);
         }
     }
 }
